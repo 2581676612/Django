@@ -1,0 +1,8 @@
+时间戳：
+  #auto_now无论是你添加还是修改对象，时间为你添加或者修改的时间。
+  #auto_now_add为添加时的时间，更新对象时不会有变动。
+  在数据库中：
+    在mysql中， 如果类型为时间的列设置了CURRENT_TIMESTAMP， 那么在insert一条新记录的收， 时间字段自动获取到当前时间， 
+    如果设置了ON UPDATE CURRENT_TIMESTAMP， 则时间字段随着update命令的更新和实时变化。 如果两个属性都设置了， 那么时
+    间字段默认为当前时间， 且随着记录的更新而自动变化。 注意， 如果仅仅是update操作， 但id（如下）并没有实际变更， 则时间值也不会变化。
+  models.DateTimeField(auto_now_add=True, null=False)
