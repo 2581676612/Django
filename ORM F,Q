@@ -1,0 +1,42 @@
+orm的F功能
+
+假设数据库有一个员工表，表中的年龄都自加“1”，这里就需要到orm的F功能，如下面的代码：
+
+    from django.db.models import F#首先要导入这个F模块
+    models.Uinfo.objects.all().update(age=F("age")+1)#这里的F功能后面的age，它就会让数据表表中的age这列+1
+F 就是用来更新获取原来值的功能
+
+orm的Q功能
+
+数据库的查询条件我们可以使用filter，在filter里面的可以是两个条件他们之间是and的关系，也可以是一个字典，例如下面的代码
+
+    models.Uinfo.objects.all().filter(id=1,name='李伟')
+    conditon={
+        'id':'1',
+        'name':'李伟'
+    }
+    models.Uinfo.objects.all().filter(**conditon)
+除了上面的方法，我们还可以加Q的对象，例如：
+
+        from django.db.models import Q
+    models.Uinfo.objects.all().filter(Q(id=1))#条件是id为1的时候
+    models.Uinfo.objects.all().filter(Q(id=1)|Q(id__gt=3))#条件是或的关系，|
+    models.Uinfo.objects.all().filter(Q(id=1) & Q(id=4))# 条件是and的关系
+Q的另外一种用法
+
+#q1 里面的条件都是or的关系
+    q1=Q()
+    q1.connector = 'OR'
+    q1.children.append(('id',1))
+    q1.children.append(('id',3))
+    q1.children.append(('id',6))
+#q2里面的条件都是or的关系
+    q2=Q()
+    q2.connector = 'OR'
+    q2.children.append(('c',2))
+    q2.children.append(('c',4))
+    q2.children.append(('c',6))
+#con 通过and的条件把q1和q2 联系到一块 
+    con=Q()
+    con.add(q1,'AND')
+    con.add(q2,'AND')
