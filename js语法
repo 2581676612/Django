@@ -1,2 +1,22 @@
 toString() 方法可把一个 Number 对象转换为一个字符串，并返回结果。
 str.length 获取字符串长度
+
+COOKIE:
+Cookies.set('startSelectDate', '');
+Cookies.get('startSelectDate');
+
+比较运算符：
+
+      ==	      等于	             x==8 为 false
+      ===	      全等（值和类型）	  x===5 为 true；x==="5" 为 false
+      !=	      不等于	            x!=8 为 true
+      >	        大于	             x>8 为 false
+      <	        小于	             x<8 为 true
+      >=	      大于或等于	         x>=8 为 false
+      <=	      小于或等于	         x<=8 为 true
+      
+逻辑运算符：
+
+      &&	      and	(x < 10 && y > 1)      为 true
+      ||	      or	(x==5 || y==5)         为 false
+      !	        not	!(x==y)                为 true
