@@ -1,0 +1,2 @@
+toString() 方法可把一个 Number 对象转换为一个字符串，并返回结果。
+str.length 获取字符串长度
