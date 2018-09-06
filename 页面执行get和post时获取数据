@@ -2,4 +2,4 @@ get获取的数据无法在post中使用，可以直接在post请求中将数据
 
 当希望本页面数据传递到另一个页面时，可使用cookie方式：
   Cookies.set('startSelectDate', '')
-  C
+  Cookies.get('startSelectDate')
