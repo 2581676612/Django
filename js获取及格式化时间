@@ -21,7 +21,12 @@
         var d = nowdate.getDate();
         var formatwdate = y+'-'+m+'-'+d;
         $("#fdate").datebox("setValue",formatwdate);
-
+        //获取系统前一个季度的时间
+        var d = new Date();
+        d.setMonth(d.getMonth()-3);
+        //获取系统前一年的时间
+        var pre = new Date();
+        pre.setFullYear(pre.getFullYear()-1);
 
 
 格式化方法:
