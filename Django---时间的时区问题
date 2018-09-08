@@ -1,0 +1,19 @@
+在django1.4以后，存在两个概念：naive time 与 active time。
+
+简单点讲，naive time就是不带时区的时间，相关Active time就是带时区的时间。
+
+举例来说，使用datetime.datetime.utcnow()、datetime.datetime.now()输出的类似2017-05-11 09:10:33.080451就是不带时区的时间（naive time），
+
+而使用django.util.timezone.now()输出的类似2015-05-11 09:05:19.936835+00:00的时间就是带时区的时间（Active time），其中+00:00表示的就是时区相对性。
+
+
+
+另外一个概念UTC时间。这里不做过多介绍，需要知晓的是UTC时间表示的是格林尼治平均时即可，即零区时间。而北京时间表示的是东八区时间，即UTC+8。
+
+
+字符串转时间 + 8
+import datetime
+value = '2017-09-07 18:00:00'
+a = datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
+a = a + datetime.timedelta(hours=8)
+print(a)
