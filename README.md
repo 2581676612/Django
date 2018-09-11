@@ -8,10 +8,10 @@
 get post 传参记得修改bootstrap-table-url
 
 git上库：
-  git st
-  git add -A
-  git st
-  git commit --amend
-  repo sync
+  git st 、
+  git add -A 、
+  git st 、
+  git commit --amend 、
+  repo sync 、
   repo upload
   
