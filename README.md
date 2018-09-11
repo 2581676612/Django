@@ -15,3 +15,7 @@ git上库：
   repo sync 、
   repo upload
   
+git回退：
+  git reset HEAD --hard 、
+  git abandon br 、
+  repo start br --all
