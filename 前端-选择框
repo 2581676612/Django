@@ -1,0 +1,7 @@
+单选使用select
+  设置默认选中项：
+    css  ： selected = "selected"
+  设置提示语：
+    <option value="" style="display: none;" disabled selected>请选择</option>
+
+多选使用multiselect
