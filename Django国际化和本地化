@@ -1,0 +1,41 @@
+1 指定待翻译字符串
+
+在python代码中：
+使用ugettext进行标记。标记是需确定自己已经安装了gettext组件。在linux下安装方式为：apt-get install gettext
+在python文件中可以import gettext然后就可以用gettext对字符串进行标记。
+from django.utils.translation import ugettext as _
+def my_view(request):
+    output = _("Welcome to my site.")
+    return HttpResponse(output)
+当你需要标记一个不需要立刻翻译的字符串，可以用django.utils.translation.gettext_noop()
+惰性翻译是指值只有再被访问时才会被翻译，可以用django.utils.translation.gettext_lazy()
+在模板中：
+在模板中进行标记，必须在模板开始写：{%load i18n%},用{%trans%}来对要翻译的字符串进行标记，当字符串中含有变量时，用{%blocktrans%}{%endblocktrans%}
+来进行标记下面是一些例子：
+不含变量：
+<title>{% trans "This is the title." %}</title>
+含有变量：
+{% blocktrans with value|filter as myvar %}
+This will have {{ myvar }} inside.
+{% endblocktrans %}
+2 创建语言文件
+
+若你之前从未做过国际化的工作，你需要在工程文件的同级目录下创建文件夹conf/locale，语言文件会按照语言分别保存在该文件夹下面。然后执行：
+django-admin.py makemessages -l zh-CN
+创建语言文件。zh-CN 是所创建文件的语言代码。这段脚本应该在三处之一运行：
+Django项目根目录。
+您Django应用的根目录。
+django 根目录（不是Subversion检出目录，而是通过 $PYTHONPATH 链接或位于该路径的某处）。 这仅和你为Django自己创建一个翻译时有关。
+若要创建所有语言的语言文件，需运行命令：
+django-admin.py makemessages -a
+但是这个命令非常耗时间，如果只是针对一个地区，可以不用这么
+
+3 编译运行
+
+创建语言文件之后，在conf/locale文件夹下面会出现相应语言代码的文件夹，在文件夹里面会生成.po文件，这里有所有待翻译的字符串，以如下的形式给出：
+#: /ex1/ex2/ex3/ex4.html
+msgid "examplestring"
+msgstr ""
+msgid是文件中标记的字符串，msgstr是需要翻译人员翻译的内容。翻译完成之后运行：
+django-admin.py compilemessages
+就可以了。
